@@ -45,7 +45,7 @@ def getRatio(price_a, price_b):
     try:
         ratio=price_a/price_b
     except ZeroDivisionError:
-        print("Cannot divide by 0")
+        return 
     return ratio
 
 
@@ -61,7 +61,7 @@ if __name__ == "__main__":
         prices=dict()
         for quote in quotes:
             stock, bid_price, ask_price, price = getDataPoint(quote)
-            prices[stock]=price
+            prices.update({stock:price})
             print("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
 
-        print("Ratio %s" % getRatio(prices.get("ABC",0), prices.get("DEF",0)))
+        print("Ratio %s" % getRatio(prices["ABC"], prices["DEF"]))
